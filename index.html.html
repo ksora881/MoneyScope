@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyScope - 재무제표를 쉽고 빠르게 분석하세요.</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="global-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <span class="logo-text">MoneyScope</span>
+            </div>
+            <button type="button" class="btn-dart" onclick="window.open('https://dart.fss.or.kr/', '_blank')">DART 바로가기</button>
+        </div>
+    </header>
+
+    <main class="main-container">
+        
+        <section class="hero-section">
+            <h1 class="hero-title">재무제표를 쉽고 빠르게 분석하세요.</h1>
+            <p class="hero-subtitle">주요 재무 지표를 입력하시면 정밀한 경영 성과 및 안정성 분석 결과를 즉시 제공합니다.</p>
+        </section>
+
+        <div class="content-grid">
+            
+            <section class="card input-card">
+                <h2 class="card-title">재무 데이터 입력</h2>
+                <form id="financialForm" onsubmit="return false;">
+                    
+                    <div class="input-group">
+                        <label for="companyName">기업명</label>
+                        <input type="text" id="companyName" placeholder="예: 삼성전자" required autocomplete="off">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="revenue">매출액 (원)</label>
+                            <input type="text" id="revenue" placeholder="0" required class="number-input">
+                        </div>
+                        <div class="input-group">
+                            <label for="operatingIncome">영업이익 (원)</label>
+                            <input type="text" id="operatingIncome" placeholder="0" required class="number-input">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="netIncome">당기순이익 (원)</label>
+                            <input type="text" id="netIncome" placeholder="0" required class="number-input">
+                        </div>
+                        <div class="input-group">
+                            <label for="equity">자본 (원)</label>
+                            <input type="text" id="equity" placeholder="0" required class="number-input">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="debt">총부채 (원)</label>
+                            <input type="text" id="debt" placeholder="0" required class="number-input">
+                        </div>
+                        <div class="input-group">
+                            <label for="cashFlow">영업활동현금흐름 (원)</label>
+                            <input type="text" id="cashFlow" placeholder="0" required class="number-input">
+                        </div>
+                    </div>
+
+                    <button type="button" id="btnAnalyze" class="btn-primary">분석하기</button>
+                </form>
+            </section>
+
+            <section class="card result-card hidden" id="resultCard">
+                <div class="result-header">
+                    <h2 class="result-company" id="resCompanyName">기업 재무 분석 결과</h2>
+                    <div class="score-badge">
+                        <span class="score-num" id="resScore">0</span><span class="score-max">/100 점</span>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar" id="resProgressBar"></div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <span class="metric-label">영업이익률</span>
+                        <span class="metric-value" id="valOpMargin">0%</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">순이익률</span>
+                        <span class="metric-value" id="valNetMargin">0%</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">부채비율</span>
+                        <span class="metric-value" id="valDebtRatio">0%</span>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <div class="report-section">
+                    <h3 class="report-subtitle">수익성 분석</h3>
+                    <p class="report-text" id="analysisProfitability">-</p>
+                </div>
+
+                <div class="report-section">
+                    <h3 class="report-subtitle">재무 안정성 분석</h3>
+                    <p class="report-text" id="analysisStability">-</p>
+                </div>
+
+                <div class="report-section">
+                    <h3 class="report-subtitle">현금흐름 분석</h3>
+                    <p class="report-text" id="analysisCashFlow">-</p>
+                </div>
+
+                <div class="report-section">
+                    <h3 class="report-subtitle">종합 분석</h3>
+                    <p class="report-text" id="analysisTotal">-</p>
+                </div>
+
+                <div class="opinion-box" id="opinionBox">
+                    <span class="opinion-label">최종 투자 의견 :</span>
+                    <span class="opinion-text" id="analysisOpinion">-</span>
+                </div>
+            </section>
+
+            <section class="card empty-card" id="emptyCard">
+                <div class="empty-message">
+                    <p class="empty-title">분석 준비 완료</p>
+                    <p class="empty-subtitle">좌측에 기업의 재무 데이터를 입력한 후<br>'분석하기' 버튼을 클릭하면 상세 리포트가 생성됩니다.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
